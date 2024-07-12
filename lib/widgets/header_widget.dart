@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:stats/provider/BarGraph_Provider.dart';
 import 'package:stats/provider/LineGraphProvider.dart';
+import 'package:stats/provider/SummaryGraphProvider.dart';
 import 'package:stats/provider/SummaryProvider.dart';
 import 'package:stats/provider/healthProvider.dart';
 import 'package:stats/utils/colors.dart';
@@ -28,7 +29,8 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     Provider.of<BarGraphProvider>(context, listen: false).loadGraphData3();
     Provider.of<BarGraphProvider>(context, listen: false).loadGraphData4();
     Provider.of<LineGraphProvider>(context, listen: false).loadGraphData();
-    // Provider.of<SummaryProvider>(context, listen: false).loadFromSharedPreferences();
+    Provider.of<SummaryProvider>(context, listen: false).load();
+    Provider.of<ChartDataProvider>(context, listen: false).fetchChartData();
   }
 
   Future<void> _loadData() async {
@@ -36,7 +38,8 @@ class _HeaderWidgetState extends State<HeaderWidget> {
       _isLoading = true;
     });
 
-    final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
+    final List<ConnectivityResult> connectivityResult =
+        await (Connectivity().checkConnectivity());
     if (connectivityResult.contains(ConnectivityResult.mobile) ||
         connectivityResult.contains(ConnectivityResult.wifi) ||
         connectivityResult.contains(ConnectivityResult.ethernet)) {
@@ -56,8 +59,11 @@ class _HeaderWidgetState extends State<HeaderWidget> {
         await Provider.of<HealthProvider>(context, listen: false)
             .fetchData()
             .timeout(const Duration(seconds: 10));
-            await Provider.of<SummaryProvider>(context, listen: false)
+        await Provider.of<SummaryProvider>(context, listen: false)
             .fetchSummaryData()
+            .timeout(const Duration(seconds: 10));
+        await Provider.of<ChartDataProvider>(context, listen: false)
+            .fetchChartData()
             .timeout(const Duration(seconds: 10));
         await Provider.of<LineGraphProvider>(context, listen: false)
             .fetchData()

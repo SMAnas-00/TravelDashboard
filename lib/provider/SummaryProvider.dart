@@ -29,10 +29,15 @@ class SummaryProvider with ChangeNotifier {
     }
   }
 
+  void load() async{
+    await _loadSummaryData();
+  }
+
   Future<void> _saveSummaryData(Map<String, dynamic> data) async {
     final prefs = await SharedPreferences.getInstance();
     final jsonString = jsonEncode(data);
     await prefs.setString('summaryData', jsonString);
+    await _loadSummaryData();
   }
 
   Future<void> _loadSummaryData() async {

@@ -10,9 +10,7 @@ class SummaryDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => SummaryProvider()..fetchSummaryData(),
-      child: Consumer<SummaryProvider>(
+    return Consumer<SummaryProvider>(
         builder: (context, provider, child) {
           final summary = provider.summary;
           return CustomCard(
@@ -30,8 +28,7 @@ class SummaryDetails extends StatelessWidget {
                   ),
           );
         },
-      ),
-    );
+      );
   }
 
   Widget buildDetails(String key, String value, Color mycolor) {
