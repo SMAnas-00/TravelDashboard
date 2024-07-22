@@ -86,10 +86,10 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
     try {
       final response = await ApiService.mobileLogin(userId, password);
-      // print("4. After response $response");  
+      print("4. After response $response");  
       if (response['status'] == '1') {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
-        // print("5. After Successful response from server $response");  
+        print("5. After Successful response from server $response");  
         _userId = response['userId'] ?? '';
         _username = response['username'] ?? '';
         _userIndex = response['userindex'] ?? 0;
@@ -98,8 +98,7 @@ class AuthProvider extends ChangeNotifier {
         prefs.setInt('login', 0);
 
         await _saveAppState();
-
-        if (_roleIndex == 0 && admin == 0) {
+        if (_roleIndex == 5 && admin == 1) {
           MyNotification.success(context, 'Login Successful');
           Future.delayed(const Duration(seconds: 1), () {
             // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DashboardScreen()));
