@@ -20,7 +20,7 @@ class ChartDataProvider with ChangeNotifier {
     }
 
     try {
-      final response = await http.get(Uri.parse(AppUrl.MSummaryEndPoint)).timeout(const Duration(seconds: 10));
+      final response = await http.get(Uri.parse(AppUrl.mSummaryEndPoint)).timeout(const Duration(seconds: 10));
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body);
         if (data.isNotEmpty) {

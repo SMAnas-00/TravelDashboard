@@ -1,12 +1,13 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:stats/provider/BarGraph_Provider.dart';
 import 'package:stats/provider/LineGraphProvider.dart';
 import 'package:stats/provider/SummaryGraphProvider.dart';
 import 'package:stats/provider/SummaryProvider.dart';
 import 'package:stats/provider/healthProvider.dart';
+import 'package:stats/provider/lineGraphRevenueProvider.dart';
 import 'package:stats/utils/colors.dart';
 import 'package:stats/utils/notification.dart';
 import 'package:stats/utils/responsive.dart';
@@ -68,6 +69,9 @@ class _HeaderWidgetState extends State<HeaderWidget> {
         await Provider.of<LineGraphProvider>(context, listen: false)
             .fetchData()
             .timeout(const Duration(seconds: 10));
+        await Provider.of<LineGraphRevenueProvider>(context, listen: false)
+            .fetchData()
+            .timeout(const Duration(seconds: 10));
         MyNotification.success(context, 'Update Successful');
       } catch (e) {
         MyNotification.error(context, 'Unable to Update');
@@ -84,26 +88,26 @@ class _HeaderWidgetState extends State<HeaderWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        if (!Responsive.isDesktop(context))
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: InkWell(
-              onTap: () => Scaffold.of(context).openDrawer(),
-              child: const Padding(
-                padding: EdgeInsets.all(4.0),
-                child: Icon(
-                  Icons.menu,
-                  color: AppColor.icon,
-                  size: 25,
-                ),
-              ),
-            ),
-          ),
-        if (!Responsive.isDesktop(context))
-          Text(
-              '${DateFormat('EEEE').format(DateTime.now())}, ${DateFormat('dd').format(DateTime.now())}'),
+        // if (!Responsive.isDesktop(context))
+        //   Padding(
+        //     padding: const EdgeInsets.only(right: 20),
+        //     child: InkWell(
+        //       onTap: () => Scaffold.of(context).openDrawer(),
+        //       child: const Padding(
+        //         padding: EdgeInsets.all(4.0),
+        //         child: Icon(
+        //           Icons.menu,
+        //           color: AppColor.icon,
+        //           size: 25,
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // if (!Responsive.isDesktop(context))
+        //   Text(
+        //       '${DateFormat('EEEE').format(DateTime.now())}, ${DateFormat('dd').format(DateTime.now())}'),
         if (!Responsive.isMobile(context))
           Expanded(
             child: TextField(
@@ -133,7 +137,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
             ),
           ),
         if (Responsive.isMobile(context))
-          IconButton(
+          _isLoading ? const SizedBox(height: 14,width: 14,child: CircularProgressIndicator(color: AppColor.grey,),) : IconButton(
             onPressed: _isLoading ? null : _loadData,
             icon: const Icon(Icons.refresh, color: AppColor.icon, size: 25),
           ),

@@ -1,12 +1,12 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stats/provider/LineGraphProvider.dart';
+import 'package:stats/provider/lineGraphRevenueProvider.dart';
 import 'package:stats/utils/colors.dart';
 import 'package:stats/widgets/custom_card_widget.dart';
 
-class LineChartCard extends StatelessWidget {
-  const LineChartCard({super.key});
+class LineChartCardRevenue extends StatelessWidget {
+  const LineChartCardRevenue({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +15,13 @@ class LineChartCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            "Monthly Bookings",
+            "Monthly Revenue",
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 20),
           AspectRatio(
             aspectRatio: 16 / 6,
-            child: Consumer<LineGraphProvider>(
+            child: Consumer<LineGraphRevenueProvider>(
               builder: (context, provider, _) {
                 return LineChart(
                   LineChartData(

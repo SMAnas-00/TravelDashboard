@@ -9,20 +9,20 @@ class MyNotification {
   {
     final isDesktop = Responsive.isDesktop(context);
     var width = MediaQuery.of(context).size.width;
-    return ElegantNotification.success(title: const Text('Success',style: TextStyle(fontSize: 12,color: AppColor.textdash),),description: Text(text),background: AppColor.cardbg,width: isDesktop ? width*0.3:null,).show(context);
+    return ElegantNotification.success(toastDuration: const Duration(seconds: 2),title: const Text('Success',style: TextStyle(fontSize: 12,color: AppColor.textdash),),description: Text(text),background: AppColor.cardbg,width: isDesktop ? width*0.3:null).show(context);
   }
 
   static error(BuildContext context,String text) 
   {
     final isDesktop = Responsive.isDesktop(context);
     var width = MediaQuery.of(context).size.width;
-    return ElegantNotification.error(title: const Text('Error',style: TextStyle(fontSize: 12,color: AppColor.textdash,),),description: Text(text),background: AppColor.cardbg,width: isDesktop ? width*0.3:null,).show(context);
+    return ElegantNotification.error(toastDuration: const Duration(seconds: 2),title: const Text('Error',style: TextStyle(fontSize: 12,color: AppColor.textdash,),),description: Text(text),background: AppColor.cardbg,width: isDesktop ? width*0.3:null,).show(context);
   }
 
   static info(BuildContext context,String text) 
   {
     final isDesktop = Responsive.isDesktop(context);
     var width = MediaQuery.of(context).size.width;
-    return ElegantNotification.info(title: const Text('Alert',style: TextStyle(fontSize: 12,color: AppColor.textdash),),description: Text(text),background: AppColor.cardbg,width: isDesktop ? width*0.3:null,).show(context);
+    return ElegantNotification.info(toastDuration: const Duration(seconds: 2),title: const Text('Alert',style: TextStyle(fontSize: 12,color: AppColor.textdash),),description: Text(text),background: AppColor.cardbg,width: isDesktop ? width*0.3:null,).show(context);
   }
 }

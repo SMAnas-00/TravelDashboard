@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stats/utils/constant.dart';
 import 'package:http/http.dart' as http;
 
-class LineGraphProvider extends ChangeNotifier {
+class LineGraphRevenueProvider extends ChangeNotifier {
   List<FlSpot> spot = [];
 
   final leftTitle = {
@@ -34,7 +34,7 @@ class LineGraphProvider extends ChangeNotifier {
 
   Future<void> fetchData() async {
     try {
-      final response = await http.get(Uri.parse(AppUrl.mWBGraphEndPoint));
+      final response = await http.get(Uri.parse(AppUrl.mWRGraphEndPoint));
 
       if (response.statusCode == 200) {
         List<dynamic> data = json.decode(response.body);
@@ -57,12 +57,12 @@ class LineGraphProvider extends ChangeNotifier {
   static Future<void> saveApiResponse(List<dynamic> response) async {
     final prefs = await SharedPreferences.getInstance();
     final jsonString = jsonEncode(response);
-    await prefs.setString('linedata', jsonString);
+    await prefs.setString('linedata2', jsonString);
   }
 
   static Future<List<FlSpot>> getApiResponse() async {
     final prefs = await SharedPreferences.getInstance();
-    final jsonString = prefs.getString('linedata');
+    final jsonString = prefs.getString('linedata2');
     if (jsonString != null) {
       final List<dynamic> jsonData = jsonDecode(jsonString);
       return _convertToGraphModel(

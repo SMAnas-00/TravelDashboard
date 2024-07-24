@@ -4,6 +4,7 @@ import 'package:stats/utils/responsive.dart';
 import 'package:stats/widgets/activity_detail_card_widget.dart';
 import 'package:stats/widgets/bar_graph_card_widget.dart';
 import 'package:stats/widgets/header_widget.dart';
+import 'package:stats/widgets/line_chart_card_Revenue.dart';
 import 'package:stats/widgets/line_chart_card_widget.dart';
 import 'package:stats/widgets/summary_widget.dart';
 
@@ -26,6 +27,8 @@ class DashboardWidget extends StatelessWidget {
             const ActivityDetailCard(),
             const SizedBox(height: 18),
             const LineChartCard(),
+            const SizedBox(height: 18),
+            const LineChartCardRevenue(),
             const SizedBox(height: 18),
             const BarGraphCard(),
             const SizedBox(height: 28),

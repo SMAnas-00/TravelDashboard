@@ -86,10 +86,14 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
     try {
       final response = await ApiService.mobileLogin(userId, password);
-      print("4. After response $response");  
+      if (kDebugMode) {
+        print("4. After response $response");
+      }  
       if (response['status'] == '1') {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
-        print("5. After Successful response from server $response");  
+        if (kDebugMode) {
+          print("5. After Successful response from server $response");
+        }  
         _userId = response['userId'] ?? '';
         _username = response['username'] ?? '';
         _userIndex = response['userindex'] ?? 0;

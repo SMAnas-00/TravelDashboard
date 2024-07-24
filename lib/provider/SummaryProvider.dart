@@ -12,7 +12,7 @@ class SummaryProvider with ChangeNotifier {
 
   Future<void> fetchSummaryData() async {
     try {
-      final response = await http.get(Uri.parse(AppUrl.MSummaryEndPoint)).timeout(const Duration(seconds: 10));
+      final response = await http.get(Uri.parse(AppUrl.mSummaryEndPoint)).timeout(const Duration(seconds: 10));
       if (response.statusCode == 200) {
         final data = json.decode(response.body)[0];
         _summary = SummaryModel.fromJson(data);

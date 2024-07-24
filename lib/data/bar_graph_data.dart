@@ -33,7 +33,7 @@ class BarGraphData {
       print("Fetching data...");
     }
     try {
-      final response = await http.get(Uri.parse(AppUrl.WAGraphEndPoint));
+      final response = await http.get(Uri.parse(AppUrl.wAGraphEndPoint));
 
       if (response.statusCode == 200) {
         List<dynamic> data = json.decode(response.body);

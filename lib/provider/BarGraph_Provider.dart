@@ -10,22 +10,42 @@ import 'package:http/http.dart' as http;
 class BarGraphProvider with ChangeNotifier {
   List<BarGraphModel> bardata = [
     BarGraphModel(
-      label: "Total",
+      label: "Perfect Holidays",
       color: AppColor.yellow,
       graph: [],
     ),
     BarGraphModel(
-      label: "Missed",
+      label: "Getaflight",
       color: AppColor.red,
       graph: const [],
     ),
     BarGraphModel(
-      label: "SLA",
+      label: "Voliamo",
       color: AppColor.piecolor2,
       graph: const [],
     ),
     BarGraphModel(
-      label: "Answered",
+      label: "Get A Cruise",
+      color: AppColor.piecolor1,
+      graph: const [],
+    ),
+    BarGraphModel(
+      label: "Click A Holiday",
+      color: AppColor.piecolor1,
+      graph: const [],
+    ),
+    BarGraphModel(
+      label: "Call For Umrah",
+      color: AppColor.piecolor1,
+      graph: const [],
+    ),
+    BarGraphModel(
+      label: "PH Travel Ltd",
+      color: AppColor.piecolor1,
+      graph: const [],
+    ),
+    BarGraphModel(
+      label: "Get A Flight USA",
       color: AppColor.piecolor1,
       graph: const [],
     ),
@@ -34,7 +54,7 @@ class BarGraphProvider with ChangeNotifier {
 
   Future<void> fetchData1() async {
     try {
-      final response = await http.get(Uri.parse(AppUrl.WTGraphEndPoint));
+      final response = await http.get(Uri.parse(AppUrl.wTGraphEndPoint));
 
       if (response.statusCode == 200) {
         List<dynamic> data = json.decode(response.body);
@@ -55,7 +75,7 @@ class BarGraphProvider with ChangeNotifier {
 
   Future<void> fetchData2() async {
     try {
-      final response = await http.get(Uri.parse(AppUrl.WMGraphEndPoint));
+      final response = await http.get(Uri.parse(AppUrl.wMGraphEndPoint));
 
       if (response.statusCode == 200) {
         List<dynamic> data = json.decode(response.body);
@@ -76,7 +96,7 @@ class BarGraphProvider with ChangeNotifier {
 
   Future<void> fetchData3() async {
     try {
-      final response = await http.get(Uri.parse(AppUrl.WSGraphEndPoint));
+      final response = await http.get(Uri.parse(AppUrl.wSGraphEndPoint));
 
       if (response.statusCode == 200) {
         List<dynamic> data = json.decode(response.body);
@@ -97,7 +117,7 @@ class BarGraphProvider with ChangeNotifier {
 
   Future<void> fetchData4() async {
     try {
-      final response = await http.get(Uri.parse(AppUrl.WAGraphEndPoint));
+      final response = await http.get(Uri.parse(AppUrl.wAGraphEndPoint));
 
       if (response.statusCode == 200) {
         List<dynamic> data = json.decode(response.body);
@@ -201,7 +221,7 @@ class BarGraphProvider with ChangeNotifier {
   Future<void> loadGraphData() async {
     List<GraphModel> graphData = await getApiResponse();
     bardata[0] = BarGraphModel(
-      label: "Total",
+      label: "Perfect Holidays",
       color: AppColor.yellow,
       graph: graphData,
     );
@@ -211,7 +231,7 @@ class BarGraphProvider with ChangeNotifier {
   Future<void> loadGraphData2() async {
     List<GraphModel> graphData = await getApiResponse2();
     bardata[1] = BarGraphModel(
-      label: "Missed",
+      label: "Getaflight",
       color: AppColor.red,
       graph: graphData,
     );
@@ -221,7 +241,7 @@ class BarGraphProvider with ChangeNotifier {
   Future<void> loadGraphData3() async {
     List<GraphModel> graphData = await getApiResponse3();
     bardata[2] = BarGraphModel(
-      label: "SLA",
+      label: "Voliamo",
       color: AppColor.piecolor2,
       graph: graphData,
     );
@@ -231,7 +251,7 @@ class BarGraphProvider with ChangeNotifier {
   Future<void> loadGraphData4() async {
     List<GraphModel> graphData = await getApiResponse4();
     bardata[3] = BarGraphModel(
-      label: "Answered",
+      label: "Get A Cruise",
       color: AppColor.piecolor1,
       graph: graphData,
     );

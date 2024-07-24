@@ -8,6 +8,7 @@ import 'package:stats/provider/LineGraphProvider.dart';
 import 'package:stats/provider/SummaryGraphProvider.dart';
 import 'package:stats/provider/SummaryProvider.dart';
 import 'package:stats/provider/healthProvider.dart';
+import 'package:stats/provider/lineGraphRevenueProvider.dart';
 import 'package:stats/provider/login_auth_provider.dart';
 import 'package:stats/utils/colors.dart';
 
@@ -26,12 +27,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HealthProvider()),
         ChangeNotifierProvider(create: (context) => SummaryProvider()),
         ChangeNotifierProvider(create: (context) => LineGraphProvider()),
-        ChangeNotifierProvider(
-            create: (_) => BarGraphProvider()..loadGraphData()),
-        ChangeNotifierProvider(
-            create: (_) => ChartDataProvider()..fetchChartData()),
+        ChangeNotifierProvider(create: (_) => BarGraphProvider()..loadGraphData()),
+        ChangeNotifierProvider(create: (_) => ChartDataProvider()..fetchChartData()),
+        ChangeNotifierProvider(create: (context) => LineGraphRevenueProvider()),
       ],
       child: MaterialApp(
+        
         theme: ThemeData(
             scaffoldBackgroundColor: AppColor.black,
             brightness: Brightness.dark),
