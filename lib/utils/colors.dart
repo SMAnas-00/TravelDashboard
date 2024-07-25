@@ -14,6 +14,14 @@ class AppColor {
   static const Color piecolor2 = Color(0xFF26E5FF);
   static const Color piecolor3 = Color(0xFFFFCF26);
   static const Color piecolor4 = Color(0xFFEE2727);
+  static const Color bar1 = Color(0xFF2697FF);
+  static const Color bar2 = Color(0xFF26E5FF);
+  static const Color bar3 = Color(0xFFFFCF26);
+  static const Color bar4 = Color.fromARGB(255, 46, 255, 50);
+  static const Color bar5 = Color(0xFF2697FF);
+  static const Color bar6 = Color(0xFF26E5FF);
+  static const Color bar7 = Color(0xFFFFCF26);
+  static const Color bar8 = Color.fromARGB(255, 46, 255, 50);
 
 
   static const Color base = white;

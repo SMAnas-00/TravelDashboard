@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HealthProvider()),
         ChangeNotifierProvider(create: (context) => SummaryProvider()),
         ChangeNotifierProvider(create: (context) => LineGraphProvider()),
-        ChangeNotifierProvider(create: (_) => BarGraphProvider()..loadGraphData()),
+        ChangeNotifierProvider(create: (_) => BarGraphProvider()..loadGraphData(0, 'apiResponse')..loadGraphData(1, 'apiResponse2')..loadGraphData(2, 'apiResponse3')..loadGraphData(3, 'apiResponse4')..loadGraphData(4, 'apiResponse5')..loadGraphData(5, 'apiResponse6')..loadGraphData(6, 'apiResponse7')..loadGraphData(7, 'apiResponse8')),
         ChangeNotifierProvider(create: (_) => ChartDataProvider()..fetchChartData()),
         ChangeNotifierProvider(create: (context) => LineGraphRevenueProvider()),
       ],

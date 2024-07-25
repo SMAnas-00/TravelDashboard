@@ -17,15 +17,30 @@ class SummaryDetails extends StatelessWidget {
             color: const Color(0xFF2F353E),
             child: summary == null
                 ? const Center(child: CircularProgressIndicator())
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      buildDetails('Total Calls', summary.totalCalls.toString(), AppColor.piecolor3),
-                      buildDetails('Answered', summary.answered.toString(), AppColor.piecolor1),
-                      buildDetails('Missed', summary.missed.toString(), AppColor.red),
-                    ],
-                  ),
+                : Column(
+                  children: [
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          buildDetails('Perfect Holiday', summary.b1.toString(), AppColor.bar1),
+                          buildDetails('Getaflight', summary.b2.toString(), AppColor.bar2),
+                          buildDetails('Valiamo', summary.b3.toString(), AppColor.bar3),
+                          buildDetails('Get A Cruise', summary.b4.toString(), AppColor.bar4),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          buildDetails('Click A Holiday', summary.b5.toString(), AppColor.bar1),
+                          buildDetails('Call For Umrah', summary.b6.toString(), AppColor.bar2),
+                          buildDetails('PH Travel Ltd', summary.b7.toString(), AppColor.bar3),
+                          buildDetails('Getaflight USA', summary.b8.toString(), AppColor.bar4),
+                        ],
+                      ),
+                  ],
+                ),
           );
         },
       );
@@ -38,7 +53,7 @@ class SummaryDetails extends StatelessWidget {
         children: [
           Text(
             key,
-            style: TextStyle(fontSize: 11, color: mycolor),
+            style: TextStyle(fontSize: 10, color: mycolor),
           ),
           const SizedBox(height: 2),
           Text(

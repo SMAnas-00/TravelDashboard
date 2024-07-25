@@ -25,11 +25,16 @@ class _HeaderWidgetState extends State<HeaderWidget> {
   @override
   void initState() {
     super.initState();
-    Provider.of<BarGraphProvider>(context, listen: false).loadGraphData();
-    Provider.of<BarGraphProvider>(context, listen: false).loadGraphData2();
-    Provider.of<BarGraphProvider>(context, listen: false).loadGraphData3();
-    Provider.of<BarGraphProvider>(context, listen: false).loadGraphData4();
+    Provider.of<BarGraphProvider>(context, listen: false).loadGraphData(0, 'apiResponse');
+    Provider.of<BarGraphProvider>(context, listen: false).loadGraphData(1, 'apiResponse2');
+    Provider.of<BarGraphProvider>(context, listen: false).loadGraphData(2, 'apiResponse3');
+    Provider.of<BarGraphProvider>(context, listen: false).loadGraphData(3, 'apiResponse4');
+    Provider.of<BarGraphProvider>(context, listen: false).loadGraphData(4, 'apiResponse5');
+    Provider.of<BarGraphProvider>(context, listen: false).loadGraphData(5, 'apiResponse6');
+    Provider.of<BarGraphProvider>(context, listen: false).loadGraphData(6, 'apiResponse7');
+    Provider.of<BarGraphProvider>(context, listen: false).loadGraphData(7, 'apiResponse8');
     Provider.of<LineGraphProvider>(context, listen: false).loadGraphData();
+    Provider.of<LineGraphRevenueProvider>(context, listen: false).loadGraphData();
     Provider.of<SummaryProvider>(context, listen: false).load();
     Provider.of<ChartDataProvider>(context, listen: false).fetchChartData();
   }
@@ -56,6 +61,18 @@ class _HeaderWidgetState extends State<HeaderWidget> {
             .timeout(const Duration(seconds: 10));
         await Provider.of<BarGraphProvider>(context, listen: false)
             .fetchData4()
+            .timeout(const Duration(seconds: 10));
+            await Provider.of<BarGraphProvider>(context, listen: false)
+            .fetchData5()
+            .timeout(const Duration(seconds: 10));
+            await Provider.of<BarGraphProvider>(context, listen: false)
+            .fetchData6()
+            .timeout(const Duration(seconds: 10));
+            await Provider.of<BarGraphProvider>(context, listen: false)
+            .fetchData7()
+            .timeout(const Duration(seconds: 10));
+            await Provider.of<BarGraphProvider>(context, listen: false)
+            .fetchData8()
             .timeout(const Duration(seconds: 10));
         await Provider.of<HealthProvider>(context, listen: false)
             .fetchData()

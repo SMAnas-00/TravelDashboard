@@ -4,7 +4,7 @@ class AppUrl{
   static var logoutEndPoint="$baseUrl/Travel/ERP.MobileServices?ActionID=MobileLogout";
   static var callsInfoEndPoint="$baseUrl/Travel/ERP.MobileServices?ActionID=CallsInfo";
   static var callsDetailsEndPoint="$baseUrl/Travel/ERP.MobileServices?ActionID=CallsInfo";
-  static var wTGraphEndPoint="$baseUrl/Travel/ERP.MobileServices?ActionID=WeeklyTotal";
+  static var wTGraphEndPoint="$baseUrl/Travel/ERP.MobileServices?ActionID=WeeklyData";
   static var wAGraphEndPoint="$baseUrl/Travel/ERP.MobileServices?ActionID=WeeklyAnswer";
   static var wMGraphEndPoint="$baseUrl/Travel/ERP.MobileServices?ActionID=WeeklyMissed";
   static var wSGraphEndPoint="$baseUrl/Travel/ERP.MobileServices?ActionID=WeeklySLA";

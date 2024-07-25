@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stats/models/graph_model.dart';
 import 'package:stats/provider/BarGraph_Provider.dart';
-// import 'package:stats/utils/colors.dart';
 import 'package:stats/utils/responsive.dart';
 import 'package:stats/widgets/custom_card_widget.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -56,12 +55,12 @@ class BarGraphCard extends StatelessWidget {
                             sideTitles: SideTitles(
                               showTitles: true,
                               getTitlesWidget: (value, meta) {
-                                final int index = value.toInt();
-                                if (index >= 0 && index < provider.label.length) {
+                                final int index = value.toInt() - 1;
+                                if (index >= 0 && index < barData.graph.length) {
                                   return Padding(
                                     padding: const EdgeInsets.only(top: 5),
                                     child: Text(
-                                      provider.label[index],
+                                      barData.graph[index].l,
                                       style: const TextStyle(
                                         fontSize: 11,
                                         color: Colors.grey,
