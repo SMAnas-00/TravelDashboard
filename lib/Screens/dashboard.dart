@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:stats/utils/colors.dart';
 import 'package:stats/utils/responsive.dart';
+import 'package:stats/widgets/dashboard_CC_widget.dart';
 // import 'package:flutter/widgets.dart';
 import 'package:stats/widgets/dashboard_widget.dart';
 import 'package:stats/widgets/side_menu_widget.dart';
@@ -57,7 +58,14 @@ class DashboardScreen extends StatelessWidget {
                     child: SizedBox(
                       child: SideMenuWidget(),
                     )),
-              const Expanded(flex: 7, child: DashboardWidget()),
+              if (isDesktop)
+                const Expanded(flex: 7, child: DashboardWidget()),
+              if (Responsive.isMobile(context))
+                const Expanded(flex: 7, child: TabBarView(children: [
+                  DashboardWidget(),
+                  DashboardCCWidget(),
+
+                ])),
               if (isDesktop) const Expanded(flex: 3, child: SummaryWidget()),
             ],
           ),

@@ -8,11 +8,13 @@ import 'package:stats/widgets/line_chart_card_Revenue.dart';
 import 'package:stats/widgets/line_chart_card_widget.dart';
 import 'package:stats/widgets/summary_widget.dart';
 
-class DashboardWidget extends StatelessWidget {
-  const DashboardWidget({super.key});
+class DashboardCCWidget extends StatelessWidget {
+  const DashboardCCWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // final healthdetails = HealthDetails();
+    // healthdetails.fetchData();
     
     return SingleChildScrollView(
       child: Padding(
