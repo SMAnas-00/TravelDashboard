@@ -1,49 +1,54 @@
-name: Flutter BUILD BOTH
+name: iOS-ipa-build
 
 on:
   workflow_dispatch:
 
 jobs:
-  build:
-    name: Build and Test
+  build-ios:
+    name: 🎉 iOS Build
     runs-on: macos-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Set up Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.13.0'  # Specify the Flutter version you need
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          architecture: x64
+      - run: flutter pub get
+      
 
-    - name: Install dependencies
-      run: flutter pub get
+      - run: pod repo update
+        working-directory: ios
 
-    - name: Run tests
-      run: flutter test
+      - run: flutter build ios --release --no-codesign
 
-    - name: Build APK
-      run: flutter build apk --release
-      env:
-        FLUTTER_BUILD_NAME: '1.0.0'
-        FLUTTER_BUILD_NUMBER: '1'
+      - run: mkdir Payload
+        working-directory: build/ios/iphoneos
 
-    - name: Build IPA
-      run: flutter build ios --release --no-codesign
-      env:
-        FLUTTER_BUILD_NAME: '1.0.0'
-        FLUTTER_BUILD_NUMBER: '1'
+      - run: mv Runner.app/ Payload
+        working-directory: build/ios/iphoneos
 
-    - name: Upload APK
-      uses: actions/upload-artifact@v3
-      with:
-        name: apk
-        path: build/app/outputs/flutter-apk/app-release.apk
+      - name: Zip output
+        run: zip -qq -r -9 FlutterIpaExport.ipa Payload
+        working-directory: build/ios/iphoneos
 
-    - name: Upload IPA
-      uses: actions/upload-artifact@v3
-      with:
-        name: ipa
-        path: build/ios/iphoneos/Runner.app
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/ios/iphoneos/FlutterIpaExport.ipa
+          tag: v2.0
+          overwrite: true
+          body: "This is second release"
 
+      - name: Build APK for Android
+        run: flutter build apk --release
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/ios/iphoneos/FlutterIpaExport.apk
+          tag: v2.0
+          overwrite: true
+          body: "This is second release"
