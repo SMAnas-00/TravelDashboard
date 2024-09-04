@@ -1,4 +1,4 @@
-name: iOS-ipa-build
+name: release-for-both
 
 on:
   workflow_dispatch:
